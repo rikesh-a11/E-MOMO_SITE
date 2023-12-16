@@ -8,7 +8,8 @@ const {
 } = require("./controllers/auth/authController");
 
 //ROUTES HERE
-const authROute = require("./routes/auth/authRoute");
+const authRoute = require("./routes/auth/authRoute");
+const productRoute = require("./routes/product/productRoute");
 
 //Routes ends here
 
@@ -29,7 +30,8 @@ app.get("/", (req, res) => {
   });
 });
 
-app.use("", authROute);
+app.use("/api", authRoute);
+app.use("/api", productRoute);
 //localhost:3000 /register  or
 //localhost:3000 /login
 //yt ma chai-> app.use("/api/v1/")
