@@ -87,9 +87,9 @@ exports.forgotPassword = async (req, res) => {
   }
   //else send OTP to that email
   const otp = Math.floor(1000 + Math.random() * 9000);
-  userExist[0].otp = otp
-  await userExist[0].save()
-  
+  userExist[0].otp = otp;
+  await userExist[0].save();
+
   await sendEmail({
     email: email,
     subject: "Your otp for DigiMOMO forgotPassword",
@@ -97,5 +97,65 @@ exports.forgotPassword = async (req, res) => {
   });
   res.status(200).json({
     message: "OTP sent successfully",
+  });
+};
+
+//verify otp
+exports.verifyOtp = async (req, res) => {
+  const { email, otp } = req.body;
+  if (!email || !otp) {
+    return res.status(400).json({
+      message: "Please provide email,otp",
+    });
+  }
+  //check if that otp is correct or not of that email
+  const userExists = await User.find({ userEmail: email });
+  if (userExists.length == 0) {
+    return res.status(404).json({
+      message: "Email is not registered",
+    });
+  }
+  if (userExists[0].otp !== otp) {
+    res.status(400).json({
+      message: "Invalid otp",
+    });
+  } else {
+    //dispost otp so cannot be used next time
+    userExists[0].otp = undefined;
+    await userExists[0].save();
+
+    res.status(201).json({
+      message: "otp is correct",
+    });
+  }
+};
+
+//reset password
+exports.resetPassword = async (req, res) => {
+  const { email, newPassword, confirmPassword } = req.body;
+  if (!email || !newPassword || !confirmPassword) {
+    return res.status(400).json({
+      message: "Please provide email,newPassword,confirmPassword",
+    });
+  }
+
+  if (newPassword !== confirmPassword) {
+    return res.status(400).json({
+      message: "newPassword and confirmPassword doesn't matched",
+    });
+  }
+
+  const userExists = await User.find({ userEmail: email });
+  if (userExists.length == 0) {
+    return res.status(400).json({
+      message: "User email not registered",
+    });
+  }
+
+  userExists[0].userPassword = bcrypt.hashSync(newPassword, 10);
+  await userExists[0].save();
+
+  res.status(200).json({
+    message: "Password changed successfully",
   });
 };
