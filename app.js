@@ -2,14 +2,15 @@ const express = require("express");
 const { connectDatabase } = require("./database/database");
 const app = express();
 
-const { loginUser, registerUSer } = require("./controllers/auth/authController");
+const {
+  loginUser,
+  registerUSer,
+} = require("./controllers/auth/authController");
 
 //ROUTES HERE
-const authROute = require("./routes/auth/authRoute")
+const authROute = require("./routes/auth/authRoute");
 
 //Routes ends here
-
-
 
 //tell nodeJs to use dotenv
 require("dotenv").config();
@@ -28,10 +29,10 @@ app.get("/", (req, res) => {
   });
 });
 
-
-app.use("",authROute)    
+app.use("", authROute);
 //localhost:3000 /register  or
- //localhost:3000 /login
+//localhost:3000 /login
+//yt ma chai-> app.use("/api/v1/")
 
 const PORT = process.env.PORT;
 //listen server
