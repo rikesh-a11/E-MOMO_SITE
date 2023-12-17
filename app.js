@@ -36,6 +36,9 @@ app.use("/api", productRoute);
 //localhost:3000 /login
 //yt ma chai-> app.use("/api/v1/")
 
+//telling nodeJs to give access to uploads folder only
+app.use(express.static("./uploads"));
+
 const PORT = process.env.PORT;
 //listen server
 app.listen(PORT, () => {
