@@ -17,7 +17,7 @@ const userSchema = new Schema({
   userPassword: {
     type: String,
     required: [true, "password must be provided"],
-    select : false
+    // select : false
   },
   role: {
     type: String,

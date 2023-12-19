@@ -11,6 +11,7 @@ const {
 const authRoute = require("./routes/auth/authRoute");
 const productRoute = require("./routes/product/productRoute");
 const adminUserRoute = require("./routes/admin/adminUserRoute")
+const userReviewRoute = require("./routes/user/userReviewRoute")
 
 //Routes ends here
 
@@ -33,7 +34,8 @@ app.get("/", (req, res) => {
 
 app.use("/api", authRoute);
 app.use("/api", productRoute);
-app.use("/api",adminUserRoute)
+app.use("/api",adminUserRoute);
+app.use("/api",userReviewRoute);
 //localhost:3000 /register  or
 //localhost:3000 /login
 //yt ma chai-> app.use("/api/v1/")
