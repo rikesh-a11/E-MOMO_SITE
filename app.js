@@ -2,17 +2,12 @@ const express = require("express");
 const { connectDatabase } = require("./database/database");
 const app = express();
 
-const {
-  loginUser,
-  registerUSer,
-} = require("./controllers/auth/authController");
-
 //ROUTES HERE
 const authRoute = require("./routes/auth/authRoute");
 const productRoute = require("./routes/product/productRoute");
 const adminUserRoute = require("./routes/admin/adminUserRoute")
 const userReviewRoute = require("./routes/user/userReviewRoute")
-
+const profileRoute = require("./routes/user/profileRoute")
 //Routes ends here
 
 //tell nodeJs to use dotenv
@@ -32,10 +27,11 @@ app.get("/", (req, res) => {
   });
 });
 
-app.use("/api", authRoute);
-app.use("/api", productRoute);
-app.use("/api",adminUserRoute);
-app.use("/api",userReviewRoute);
+app.use("/api/auth", authRoute);
+app.use("/api/products", productRoute);
+app.use("/api/admin",adminUserRoute);
+app.use("/api/reviews",userReviewRoute);
+app.use("/api/profile",profileRoute);
 //localhost:3000 /register  or
 //localhost:3000 /login
 //yt ma chai-> app.use("/api/v1/")

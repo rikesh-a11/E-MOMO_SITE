@@ -1,7 +1,5 @@
 const {
   createProduct,
-  getProducts,
-  getProduct,
   deleteProduct,
   editProduct,
 } = require("../../controllers/admin/product/productController");
@@ -11,11 +9,12 @@ const restrictTo = require("../../middleware/restrictTo");
 const router = require("express").Router();
 const { multer, storage } = require("../../middleware/multerCongif");
 const catchAsync = require("../../services/catchAsync");
+const { getProduct, getProducts } = require("../../controllers/global/globalController");
 const upload = multer({ storage: storage });
 
 //products
 router
-  .route("/products")
+  .route("/")
   .post(
     isAuthenticated,
     restrictTo("admin"),
@@ -26,7 +25,7 @@ router
 
 //single product
 router
-  .route("/products/:id")
+  .route("/:id")
   .get(catchAsync(getProduct))
   .delete(isAuthenticated, restrictTo("admin"), catchAsync(deleteProduct))
   .patch(

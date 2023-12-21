@@ -27,7 +27,7 @@ const productSchema = new Schema(
     productImage: {
       type : String,
     },
-    reviews : [reviewSchema]
+    // reviews : [reviewSchema]
   },
   {
     timestamps: true,
