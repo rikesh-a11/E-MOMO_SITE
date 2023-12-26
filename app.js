@@ -5,9 +5,10 @@ const app = express();
 //ROUTES HERE
 const authRoute = require("./routes/auth/authRoute");
 const productRoute = require("./routes/product/productRoute");
-const adminUserRoute = require("./routes/admin/adminUserRoute")
-const userReviewRoute = require("./routes/user/userReviewRoute")
-const profileRoute = require("./routes/user/profileRoute")
+const adminUserRoute = require("./routes/admin/adminUserRoute");
+const userReviewRoute = require("./routes/user/userReviewRoute");
+const profileRoute = require("./routes/user/profileRoute");
+const cartRoute = require("./routes/user/cartRoute")
 //Routes ends here
 
 //tell nodeJs to use dotenv
@@ -29,9 +30,10 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", authRoute);
 app.use("/api/products", productRoute);
-app.use("/api/admin",adminUserRoute);
-app.use("/api/reviews",userReviewRoute);
-app.use("/api/profile",profileRoute);
+app.use("/api/admin", adminUserRoute);
+app.use("/api/reviews", userReviewRoute);
+app.use("/api/profile", profileRoute);
+app.use("/api/cart", cartRoute);
 //localhost:3000 /register  or
 //localhost:3000 /login
 //yt ma chai-> app.use("/api/v1/")
