@@ -50,6 +50,7 @@ exports.loginUser = async (req, res) => {
     });
   }
 
+
   //password check
   const isMatched = bcrypt.compareSync(password, userFound[0].userPassword);
   if (isMatched) {
@@ -69,6 +70,7 @@ exports.loginUser = async (req, res) => {
     });
   }
 };
+
 
 //forgot password
 exports.forgotPassword = async (req, res) => {

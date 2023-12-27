@@ -1,6 +1,7 @@
 const Product = require("../../../model/productModel");
 const User = require("../../../model/userModel");
 
+
 //adding to cart
 exports.addToCart = async (req, res) => {
   //userId , productId
@@ -25,6 +26,7 @@ exports.addToCart = async (req, res) => {
   });
 };
 
+
 //get my cart items
 exports.getMyCartItems = async (req, res) => {
   const userId = req.user.id;
@@ -37,6 +39,7 @@ exports.getMyCartItems = async (req, res) => {
     data: userData.cart,
   });
 };
+
 
 //delete items from cart
 exports.deleteItemFromCart = async (req, res) => {
