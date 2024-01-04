@@ -50,7 +50,6 @@ exports.loginUser = async (req, res) => {
     });
   }
 
-
   //password check
   const isMatched = bcrypt.compareSync(password, userFound[0].userPassword);
   if (isMatched) {
@@ -61,8 +60,8 @@ exports.loginUser = async (req, res) => {
 
     res.status(200).json({
       message: "User logged in successfully",
-      data : userFound,
-      data : token,
+      data: userFound,
+      data: token,
     });
   } else {
     res.status(400).json({
@@ -70,7 +69,6 @@ exports.loginUser = async (req, res) => {
     });
   }
 };
-
 
 //forgot password
 exports.forgotPassword = async (req, res) => {

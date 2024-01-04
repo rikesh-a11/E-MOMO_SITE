@@ -1,6 +1,10 @@
 const express = require("express");
 const { connectDatabase } = require("./database/database");
 const app = express();
+// const bcrypt = require("bcryptjs")
+
+// const {Server} = require("socket.io")
+const cors = require("cors")
 
 //ROUTES HERE
 const authRoute = require("./routes/auth/authRoute");
@@ -11,9 +15,13 @@ const profileRoute = require("./routes/user/profileRoute");
 const cartRoute = require("./routes/user/cartRoute")
 const orderRoute = require("./routes/user/orderRoute")
 const adminOrderRoute = require("./routes/admin/adminOrderRoute")
-const paymentRoute = require("./routes/user/paymentRoute")
-
+const paymentRoute = require("./routes/user/paymentRoute");
+const User = require("./model/userModel");
 //Routes ends here
+
+app.use(cors({
+  origin : '*'
+}))
 
 //tell nodeJs to use dotenv
 require("dotenv").config();
@@ -50,6 +58,31 @@ app.use(express.static("./uploads"));
 
 const PORT = process.env.PORT;
 //listen server
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server has started at PORT ${PORT}`);
 });
+
+// const io = new Server(server)
+
+// io.on("connection",(socket)=>{
+//   // console.log("A user is connected")
+//   // socket.on("disconnect",()=>{
+//   //   console.log("A user is disconnected")
+//   // })
+
+//   socket.on('register',async(data)=>{
+//     // const {email,username,phoneNumber,password} = data
+//     // await User.create({
+//     //   userName: username,
+//     //   userEmail: email,
+//     //   userPhoneNumber: phoneNumber,
+//     //   userPassword: bcrypt.hashSync(password, 10),
+//     // });
+//     // socket.emit('response',{message: "User Registered"})   // broadcast jastai sabai lai pathauxa
+//     io.to(socket.id).emit('response',{message: "User Registered"})   //jasle req garyo tyo socket id lai pathauxa
+//   })
+// })
+// function getSocketIo(){
+//   return io
+// }
+// module.exports.getSocketIo = getSocketIo
