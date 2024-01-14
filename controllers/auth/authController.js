@@ -21,7 +21,7 @@ exports.registerUSer = async (req, res) => {
   }
 
   //else
-  await User.create({
+  const userData = await User.create({
     userName: username,
     userEmail: email,
     userPhoneNumber: phoneNumber,
@@ -30,6 +30,7 @@ exports.registerUSer = async (req, res) => {
 
   res.status(201).json({
     message: "User register sucessfully",
+    data : userData
   });
 };
 
