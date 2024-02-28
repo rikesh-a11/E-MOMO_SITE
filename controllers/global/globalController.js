@@ -1,4 +1,5 @@
 const Product = require("../../model/productModel")
+const Review = require("../../model/reviewModel")
 
 //products
 exports.getProducts =  async(req,res)=>{
