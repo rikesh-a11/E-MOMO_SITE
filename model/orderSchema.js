@@ -16,14 +16,15 @@ const orderSchema = new Schema(
     ],
     totalAmount: { type: Number, required: true },
     shippingAddress: { type: String, required: true },
+    phoneNumber: { type: Number, required: true },
     orderStatus: {
       type: String,
       enum: ["pending", "delivered", "cancelled", "ontheway", "preparation"],
       default: "pending",
     },
     paymentDetails: {
-      pidx: {type : String},
-      method: { type: String, enum: ["COD", "khalti"] },
+      pidx: { type: String },
+      method: { type: String, enum: ["COD", "Khalti"] },
       status: {
         type: String,
         enum: ["paid", "unpaid", "pending"],
